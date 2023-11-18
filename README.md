@@ -1,25 +1,25 @@
 # TodoList
 
-±¾ÏîÄ¿ÊÇÑ§Ï°AvaloniaÊ±µÄÁ·ÊÖÏîÄ¿£¬ÔÚAvaloniaËµÃ÷ÎÄµµµÄÊ¾ÀıÏîÄ¿´ı°ìÊÂÏîÓ¦ÓÃµÄ»ù´¡ÉÏ½ÓÈëÁËMySqlÊı¾İ¿â¡£
+æœ¬é¡¹ç›®æ˜¯å­¦ä¹ Avaloniaæ—¶çš„ç»ƒæ‰‹é¡¹ç›®ï¼Œåœ¨Avaloniaè¯´æ˜æ–‡æ¡£çš„ç¤ºä¾‹é¡¹ç›®å¾…åŠäº‹é¡¹åº”ç”¨çš„åŸºç¡€ä¸Šæ¥å…¥äº†MySqlæ•°æ®åº“ã€‚
 
-## »ùÓÚMVVMÊµÏÖµÄTodoListÏîÄ¿ 
+## åŸºäºMVVMå®ç°çš„TodoListé¡¹ç›® 
 
-Ê¹ÓÃ¿ò¼Ü£º[AvaloniaUI 11.0.0](https://docs.avaloniaui.net/zh-Hans/docs/next/welcome) 
+ä½¿ç”¨æ¡†æ¶ï¼š[AvaloniaUI 11.0.0](https://docs.avaloniaui.net/zh-Hans/docs/next/welcome) 
 
-Êı¾İ´æ´¢£ºMySql 5.7.39
+æ•°æ®å­˜å‚¨ï¼šMySql 5.7.39
 
-AvaloniaUI £ºAvaloniaÊÇÒ»¸öÇ¿´óµÄ¿ò¼Ü£¬Ê¹¿ª·¢ÈËÔ±ÄÜ¹»Ê¹ÓÃ.NET´´½¨¿çÆ½Ì¨Ó¦ÓÃ³ÌĞò¡£ËüÊ¹ÓÃ×Ô¼ºµÄäÖÈ¾ÒıÇæ»æÖÆUI¿Ø¼ş£¬È·±£ÔÚWindows¡¢macOS¡¢Linux¡¢Android¡¢iOSºÍWebAssemblyµÈ²»Í¬Æ½Ì¨ÉÏ¾ßÓĞÒ»ÖÂµÄÍâ¹ÛºÍĞĞÎª¡£
+AvaloniaUI ï¼šAvaloniaæ˜¯ä¸€ä¸ªå¼ºå¤§çš„æ¡†æ¶ï¼Œä½¿å¼€å‘äººå‘˜èƒ½å¤Ÿä½¿ç”¨.NETåˆ›å»ºè·¨å¹³å°åº”ç”¨ç¨‹åºã€‚å®ƒä½¿ç”¨è‡ªå·±çš„æ¸²æŸ“å¼•æ“ç»˜åˆ¶UIæ§ä»¶ï¼Œç¡®ä¿åœ¨Windowsã€macOSã€Linuxã€Androidã€iOSå’ŒWebAssemblyç­‰ä¸åŒå¹³å°ä¸Šå…·æœ‰ä¸€è‡´çš„å¤–è§‚å’Œè¡Œä¸ºã€‚
 
-## ÏîÄ¿½á¹¹
-* Assets -- ÏîÄ¿×Ê²úÎÄ¼ş
-* DataModel -- Êı¾İÊµÌå
-* Service -- Êı¾İ¿âÏà¹ØÎÄ¼ş
-* ViewModel -- ÊÓÍ¼Ä£ĞÍ
-* View -- ÊÓÍ¼
+## é¡¹ç›®ç»“æ„
+* Assets -- é¡¹ç›®èµ„äº§æ–‡ä»¶
+* DataModel -- æ•°æ®å®ä½“
+* Service -- æ•°æ®åº“ç›¸å…³æ–‡ä»¶
+* ViewModel -- è§†å›¾æ¨¡å‹
+* View -- è§†å›¾
 
 
-## Ğ§¹û
-![image-Ó¦ÓÃ³ÌĞò½ØÍ¼](.\Other\image-20231118223111.png)
+## æ•ˆæœ
+![image-åº”ç”¨ç¨‹åºæˆªå›¾](https://github.com/Lemo1925/TodoList/blob/master/Other/image-20231118223111.png)
 
-![image-Êı¾İ¿â½ØÍ¼](.\Other\image-20231118223648363.png)
+![image-æ•°æ®åº“æˆªå›¾](https://github.com/Lemo1925/TodoList/blob/master/Other/image-20231118223648363.png)
 
