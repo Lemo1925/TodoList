@@ -1,14 +1,18 @@
 ﻿using AvaloniaTodoListApp.Services;
 using System.ComponentModel;
+using System.Runtime.Serialization;
 
 namespace AvaloniaTodoListApp.DataModels
 {
     // 数据实体
+    [DataContract]
     public class TodoItem : INotifyPropertyChanged
     {
+        [DataMember]
         private bool _isChecked;
 
         // Data Model 
+        [DataMember]
         public string Description { get; set; } = string.Empty;
         public bool IsChecked 
         { 

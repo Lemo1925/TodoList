@@ -10,12 +10,13 @@ namespace AvaloniaTodoListApp.ViewModels
     {
         private ViewModelBase _content;
         // 这个视图模型依赖于 ToDoListService
-        
+        private TodoListServices service;
+
         // Put data into Container ---- 依赖
         public MainWindowViewModel() 
         {
-            var service = new TodoListServices();
-            ToDoList = new TodoListViewModel(service.GetItems());
+            service = new TodoListServices();
+            ToDoList = new TodoListViewModel(service.GetItemsFromJson());
             _content = ToDoList;
         }
         
@@ -41,6 +42,7 @@ namespace AvaloniaTodoListApp.ViewModels
                         ToDoList.Items.Add(model);
                         // 将新的todoItme写入数据库
                         DBHelper.ExcuteNoneQuery($"Insert into items (Description) values ('{model.Description}')");
+                        service.SaveJson();
                     }
                     ContentViewModel = ToDoList;
                 });
