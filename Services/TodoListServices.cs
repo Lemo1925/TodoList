@@ -52,6 +52,8 @@ namespace AvaloniaTodoListApp.Services
         // 从Json中解析出Todo Item
         public IEnumerable<TodoItem> GetItemsFromJson()
         {
+            SaveJson();
+
             var itemList = new List<TodoItem>();
             var stream = new MemoryStream(Encoding.UTF8.GetBytes(LoadJson()));
             var serializer = new DataContractJsonSerializer (itemList.GetType());
