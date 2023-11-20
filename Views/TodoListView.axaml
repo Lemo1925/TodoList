@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="450"
+			 Width="250" Height="450"
              x:Class="AvaloniaTodoListApp.Views.TodoListView"
 			 xmlns:vm="using:AvaloniaTodoListApp.ViewModels"
 			 x:DataType="vm:TodoListViewModel">
@@ -14,13 +15,17 @@
 				Command="{Binding $parent[Window].DataContext.AddItem}">
 			Add Item
 		</Button>
+		
 		<ItemsControl ItemsSource="{Binding Items}">
 			<ItemsControl.ItemTemplate>
 				<DataTemplate>
-					<CheckBox Margin="4"
-							  IsChecked="{Binding IsChecked}"
-							  Content="{Binding Description}"
-							  />
+					<Panel>
+						<CheckBox Margin="4"
+						  IsChecked="{Binding IsChecked}"
+						  Content="{Binding Description}">
+						</CheckBox>
+						<Button HorizontalAlignment="Right">Edit</Button>
+					</Panel>
 				</DataTemplate>
 			</ItemsControl.ItemTemplate>
 		</ItemsControl>

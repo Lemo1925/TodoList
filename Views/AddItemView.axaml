@@ -4,6 +4,7 @@
              xmlns:vm="using:AvaloniaTodoListApp.ViewModels"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="250" d:DesignHeight="450"
+			 Width="250" Height="450"
              x:Class="AvaloniaTodoListApp.Views.AddItemView"
 			 x:DataType="vm:AddItemViewModel"
 			 >
