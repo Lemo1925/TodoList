@@ -41,7 +41,9 @@ namespace AvaloniaTodoListApp.ViewModels
                     {
                         ToDoList.Items.Add(model);
                         // 将新的todoItme写入数据库
-                        DBHelper.ExcuteNoneQuery($"Insert into items (Description) values ('{model.Description}')");
+                        //DBHelper.ExcuteNoneQuery($"Insert into items (Description) values ('{model.Description}')");
+                        // 同步更新data的todo item
+                        service.AddItme(model.Description);
                     }
                     ContentViewModel = ToDoList;
                 });

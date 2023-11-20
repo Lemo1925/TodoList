@@ -1,4 +1,5 @@
 using Avalonia.Controls;
+using AvaloniaTodoListApp.Services;
 
 namespace AvaloniaTodoListApp.Views
 {
@@ -7,6 +8,7 @@ namespace AvaloniaTodoListApp.Views
         public MainWindow()
         {
             InitializeComponent();
+            Closing += (sender, e) => TodoListServices.SaveJson();
         }
     }
 }
