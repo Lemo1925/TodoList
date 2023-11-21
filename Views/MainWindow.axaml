@@ -10,7 +10,9 @@
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="Aws Todo List"
-		Content="{Binding ContentViewModel}">
+		Content="{Binding ContentViewModel}"
+	    WindowStartupLocation="CenterScreen">
+		
 	
 </Window>
                                                                                                         

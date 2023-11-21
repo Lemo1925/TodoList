@@ -21,10 +21,13 @@
 				<DataTemplate>
 					<Panel>
 						<CheckBox Margin="4"
-						  IsChecked="{Binding IsChecked}"
-						  Content="{Binding Description}">
+								  IsChecked="{Binding IsChecked}"
+								  Content="{Binding Description}">
 						</CheckBox>
-						<Button HorizontalAlignment="Right">Edit</Button>
+						<Button HorizontalAlignment="Right"
+								x:CompileBindings="False"
+								Command="{Binding $parent[Window].DataContext.EditItemCommand}"
+								CommandParameter="{Binding Description}">Edit</Button>
 					</Panel>
 				</DataTemplate>
 			</ItemsControl.ItemTemplate>

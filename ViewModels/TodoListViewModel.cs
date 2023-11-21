@@ -1,4 +1,6 @@
-﻿using AvaloniaTodoListApp.DataModels;
+﻿using Avalonia.Controls;
+using Avalonia.Input;
+using AvaloniaTodoListApp.DataModels;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -15,7 +17,5 @@ namespace AvaloniaTodoListApp.ViewModels
         }
 
         public ObservableCollection<TodoItem> Items { get; }
-
-
     }
 }

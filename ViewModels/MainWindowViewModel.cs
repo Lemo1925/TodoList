@@ -1,8 +1,11 @@
-﻿using AvaloniaTodoListApp.DataModels;
+﻿using Avalonia.Controls;
+using Avalonia.Input;
+using AvaloniaTodoListApp.DataModels;
 using AvaloniaTodoListApp.Services;
 using ReactiveUI;
 using System;
 using System.Reactive.Linq;
+using System.Windows.Input;
 
 namespace AvaloniaTodoListApp.ViewModels
 {
@@ -18,8 +21,21 @@ namespace AvaloniaTodoListApp.ViewModels
             service = new TodoListServices();
             ToDoList = new TodoListViewModel(service.GetItemsFromJson());
             _content = ToDoList;
+
+            showEdit = new Interaction<EditWindowViewModel, TextViewModel?>();
+
+            EditItemCommand = ReactiveCommand.CreateFromTask(async (string description) =>
+            {
+                var EditWindow = new EditWindowViewModel(description);
+
+                var result = await showEdit.Handle(EditWindow);
+            });
         }
-        
+
+        public ICommand EditItemCommand { get; }
+
+        public Interaction<EditWindowViewModel, TextViewModel?> showEdit {  get; }
+
         public ViewModelBase ContentViewModel 
         { 
             get => _content; 
@@ -43,14 +59,12 @@ namespace AvaloniaTodoListApp.ViewModels
                         // 将新的todoItme写入数据库
                         //DBHelper.ExcuteNoneQuery($"Insert into items (Description) values ('{model.Description}')");
                         // 同步更新data的todo item
-                        service.AddItme(model.Description);
+                        TodoListServices.AddItem(model.Description);
                     }
                     ContentViewModel = ToDoList;
                 });
 
             ContentViewModel = addItemVM;
         }
-
-
     }
 }

@@ -8,8 +8,7 @@ using System.Text;
 
 namespace AvaloniaTodoListApp.Services
 {
-    // 在真实的应用程序中，可能会使用 SQL 数据库，并基于 Microsoft Entity Framework 编写读取和写入数据的服务。
-    // 为了简单这里只创建一个虚拟数据服务，它会像有一个数据库一样运行，但实际上只是在内存中使用一个数组。
+    // 数据表管理
     public class TodoListServices
     {
         private static DataTable? _data;
@@ -42,7 +41,7 @@ namespace AvaloniaTodoListApp.Services
         }
 
         // 向data里面写入新增的Todo Item
-        public void AddItme(string Description)
+        public static void AddItem(string Description)
         {
             TodoItem item = new TodoItem { Description = Description, IsChecked = false };
             _data!.Rows.Add(_data.Rows.Count, item.Description, item.IsChecked, item.Date);
@@ -57,6 +56,19 @@ namespace AvaloniaTodoListApp.Services
                 if (description == Description)
                 {
                     row["IsChecked"] = state;
+                }
+            }
+        }
+
+        // 同步data里面Description的内容
+        public static void EditItem(string Description, string Content)
+        {
+            foreach(DataRow row in _data!.Rows)
+            {
+                string description = Convert.ToString(row["Description"])!;
+                if (description == Description)
+                {
+                    row["Description"] = Content;
                 }
             }
         }

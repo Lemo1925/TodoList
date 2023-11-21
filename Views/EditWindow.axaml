@@ -1,0 +1,15 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:vm="using:AvaloniaTodoListApp.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="200"
+		Width="200" Height="200"
+		xmlns:views="clr-namespace:AvaloniaTodoListApp.Views"
+        x:Class="AvaloniaTodoListApp.EditWindow"
+		x:DataType="vm:EditWindowViewModel"
+        Title="Edit Todo Item"
+		WindowStartupLocation="CenterOwner"
+		Content="{Binding ContentViewModel}">
+
+</Window>
