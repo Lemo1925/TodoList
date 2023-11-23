@@ -4,6 +4,8 @@
 
 ## 基于MVVM实现的TodoList项目 
 
+编译环境：.Net 7
+
 使用框架：[AvaloniaUI 11.0.0](https://docs.avaloniaui.net/zh-Hans/docs/next/welcome) 
 
 数据存储：MySql 5.7.39 ---> Json
