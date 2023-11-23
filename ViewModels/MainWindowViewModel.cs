@@ -1,9 +1,8 @@
-﻿using Avalonia.Controls;
-using Avalonia.Input;
-using AvaloniaTodoListApp.DataModels;
+﻿using AvaloniaTodoListApp.DataModels;
 using AvaloniaTodoListApp.Services;
 using ReactiveUI;
 using System;
+using System.Linq;
 using System.Reactive.Linq;
 using System.Windows.Input;
 
@@ -16,7 +15,7 @@ namespace AvaloniaTodoListApp.ViewModels
         private TodoListServices service;
 
         // Put data into Container ---- 依赖
-        public MainWindowViewModel() 
+        public MainWindowViewModel()
         {
             service = new TodoListServices();
             ToDoList = new TodoListViewModel(service.GetItemsFromJson());
@@ -26,20 +25,20 @@ namespace AvaloniaTodoListApp.ViewModels
 
             EditItemCommand = ReactiveCommand.CreateFromTask(async (string description) =>
             {
-                var EditWindow = new EditWindowViewModel(description);
-
-                var result = await showEdit.Handle(EditWindow);
+                EditWindowViewModel EditWindow = new(description);
+                EditWindow.UpdateText(ToDoList.Items);
+                _ = await showEdit.Handle(EditWindow);
             });
         }
 
         public ICommand EditItemCommand { get; }
 
-        public Interaction<EditWindowViewModel, TextViewModel?> showEdit {  get; }
+        public Interaction<EditWindowViewModel, TextViewModel?> showEdit { get; }
 
-        public ViewModelBase ContentViewModel 
-        { 
-            get => _content; 
-            private set => this.RaiseAndSetIfChanged(ref _content, value); 
+        public ViewModelBase ContentViewModel
+        {
+            get => _content;
+            private set => this.RaiseAndSetIfChanged(ref _content, value);
         }
 
         public TodoListViewModel ToDoList { get; }
@@ -50,10 +49,10 @@ namespace AvaloniaTodoListApp.ViewModels
 
             Observable.Merge(
                 addItemVM.OkCommand,
-                addItemVM.CancelCommand.Select(_ => ( TodoItem?)null)).Take(1)
+                addItemVM.CancelCommand.Select(_ => (TodoItem?)null)).Take(1)
                 .Subscribe(model =>
                 {
-                    if (model != null)
+                    if (model != null && ToDoList.Items.FirstOrDefault(x => x.Description == model.Description) == null)
                     {
                         ToDoList.Items.Add(model);
                         // 将新的todoItme写入数据库
@@ -66,5 +65,6 @@ namespace AvaloniaTodoListApp.ViewModels
 
             ContentViewModel = addItemVM;
         }
+
     }
 }

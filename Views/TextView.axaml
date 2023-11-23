@@ -7,5 +7,27 @@
 			 xmlns:vm="using:AvaloniaTodoListApp.ViewModels"
              x:Class="AvaloniaTodoListApp.Views.TextView"
 			 x:DataType="vm:TextViewModel">
-  Welcome to Avalonia!
+	<DockPanel>
+		<DockPanel DockPanel.Dock="Bottom">
+			<Button HorizontalAlignment="Center"
+					HorizontalContentAlignment="Center"
+					VerticalAlignment="Center"
+					Content="Edit"
+					Padding="15,5,15,5"
+					Margin="25,0,5,0"
+					Command="{Binding EditCommand}"
+					>
+			</Button>
+			<Button HorizontalAlignment="Center"
+					HorizontalContentAlignment="Center"
+					VerticalAlignment="Center"
+					Content="Cancel"
+					Padding="5"
+					Command="{Binding CancelCommand}"
+					></Button>
+		</DockPanel>
+		<TextBox AcceptsReturn="True"
+				 DockPanel.Dock="Top"
+				 Text="{Binding Content}"></TextBox>
+	</DockPanel>
 </UserControl>

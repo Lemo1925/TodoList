@@ -60,19 +60,23 @@ namespace AvaloniaTodoListApp.Services
             }
         }
 
-        // 同步data里面Description的内容
-        public static void EditItem(string Description, string Content)
+        /// <summary>
+        /// 同步data里面Description的内容
+        /// </summary>
+        /// <param name="OriDes">需要修改的Item</param>
+        /// <param name="NewDes">新的内容</param>
+        public static void EditItem(string OriDes, string NewDes)
         {
             foreach(DataRow row in _data!.Rows)
             {
                 string description = Convert.ToString(row["Description"])!;
-                if (description == Description)
+                if (description == OriDes)
                 {
-                    row["Description"] = Content;
+                    row["Description"] = NewDes;
+                    return;
                 }
             }
         }
-
 
         // 将Todo Item序列化成Json格式
         private static string GetJson()
