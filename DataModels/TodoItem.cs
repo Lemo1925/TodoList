@@ -29,6 +29,7 @@ namespace AvaloniaTodoListApp.DataModels
                     if (_isChecked) 
                     { 
                         //DBHelper.ExcuteNoneQuery($"Update items set ischecked = 1 where description = '{Description}'");
+                        Date = DateTime.Now.ToString();
                         TodoListServices.CheckItem(Description, 1);
                     }
                     else
