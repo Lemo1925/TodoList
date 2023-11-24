@@ -12,7 +12,7 @@
         Title="Aws Todo List"
 		Content="{Binding ContentViewModel}"
 	    WindowStartupLocation="CenterScreen">
-		
+	
 	
 </Window>
                                                                                                         
