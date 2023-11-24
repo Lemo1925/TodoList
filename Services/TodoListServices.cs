@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
 
@@ -38,6 +39,48 @@ namespace AvaloniaTodoListApp.Services
                 });
             }
             return list;
+        }
+
+        // 将Todo Item序列化成Json格式
+        private static string GetJson()
+        {
+            //_data = DBHelper.ExcuteQuery("Select * from items"); 
+            var stream = new MemoryStream();
+            var serializer = new DataContractJsonSerializer(typeof(List<TodoItem>));
+            serializer.WriteObject(stream, GetItems());
+            byte[] dataJson = stream.ToArray();
+            stream.Close();
+            return Encoding.UTF8.GetString(dataJson, 0, dataJson.Length);
+        }
+
+        // 将Json文件存储到本地
+        public static void SaveJson() => File.WriteAllText(JsonFilePath, GetJson());
+
+        // 读取本地的Json文件
+        public string LoadJson() => File.ReadAllText(JsonFilePath);
+
+        // 从Json中解析出Todo Item
+        public IEnumerable<TodoItem> GetItemsFromJson()
+        {
+            var itemList = new List<TodoItem>();
+            var stream = new MemoryStream(Encoding.UTF8.GetBytes(LoadJson()));
+            var serializer = new DataContractJsonSerializer (itemList.GetType());
+            itemList = serializer.ReadObject(stream) as List<TodoItem>;
+
+            // 将解析出来的Item放入data
+            if (itemList != null)
+            {
+                // 剔除已完成7天以上的Item
+                var today = DateTime.Now;
+                _ = itemList.RemoveAll(x => x.IsChecked 
+                                       && DateTime.TryParse(x.Date, out DateTime date) 
+                                       && today.Subtract(date).TotalDays > 7);
+
+                foreach (var item in itemList.ToList())
+                    _data!.Rows.Add(_data.Rows.Count, item.Description, item.IsChecked, item.Date);       
+            }
+
+            return itemList!;
         }
 
         // 向data里面写入新增的Todo Item
@@ -76,44 +119,6 @@ namespace AvaloniaTodoListApp.Services
                     return;
                 }
             }
-        }
-
-        // 将Todo Item序列化成Json格式
-        private static string GetJson()
-        {
-            //_data = DBHelper.ExcuteQuery("Select * from items"); 
-            var stream = new MemoryStream();
-            var serializer = new DataContractJsonSerializer(typeof(List<TodoItem>));
-            serializer.WriteObject(stream, GetItems());
-            byte[] dataJson = stream.ToArray();
-            stream.Close();
-            return Encoding.UTF8.GetString(dataJson, 0, dataJson.Length);
-        }
-
-        // 将Json文件存储到本地
-        public static void SaveJson() => File.WriteAllText(JsonFilePath, GetJson());
-
-        // 读取本地的Json文件
-        public string LoadJson() => File.ReadAllText(JsonFilePath);
-
-        // 从Json中解析出Todo Item
-        public IEnumerable<TodoItem> GetItemsFromJson()
-        {
-            var itemList = new List<TodoItem>();
-            var stream = new MemoryStream(Encoding.UTF8.GetBytes(LoadJson()));
-            var serializer = new DataContractJsonSerializer (itemList.GetType());
-            itemList = serializer.ReadObject(stream) as List<TodoItem>;
-
-            // 将解析出来的Item放入data
-            if (itemList != null)
-            {
-                foreach (var item in itemList)
-                {
-                    _data!.Rows.Add(_data.Rows.Count, item.Description, item.IsChecked, item.Date);
-                }
-            }
-
-            return itemList!;
         }
     }
 }
