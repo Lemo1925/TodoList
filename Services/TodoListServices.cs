@@ -13,7 +13,7 @@ namespace AvaloniaTodoListApp.Services
     public class TodoListServices
     {
         private static DataTable? _data;
-        private const string JsonFilePath = "..\\..\\..\\Other\\todolist.json";
+        private static readonly string JsonFilePath = AppDomain.CurrentDomain.BaseDirectory + "todolist.json";
 
         // A Service to get data from file or DataBase;
         public TodoListServices()
@@ -56,11 +56,25 @@ namespace AvaloniaTodoListApp.Services
         // 将Json文件存储到本地
         public static void SaveJson() => File.WriteAllText(JsonFilePath, GetJson());
 
-        // 读取本地的Json文件
-        public string LoadJson() => File.ReadAllText(JsonFilePath);
+        // 读取本地的Json文件,如果文件不存在就新建一个
+        public string LoadJson()
+        {
+            string json;
+            if (File.Exists(JsonFilePath))
+            {
+                json = File.ReadAllText(JsonFilePath);
+            }
+            else
+            {
+                json = "{ \"Date\":\"2001/11/22 04:44:44\",\"Description\":\"the first item\",\"_isChecked\":true}";
+                File.WriteAllText(JsonFilePath, json);
+            }
+
+            return json;
+        }
 
         // 从Json中解析出Todo Item
-        public IEnumerable<TodoItem> GetItemsFromJson()
+        public IEnumerable<TodoItem>? GetItemsFromJson()
         {
             var itemList = new List<TodoItem>();
             var stream = new MemoryStream(Encoding.UTF8.GetBytes(LoadJson()));
@@ -80,13 +94,13 @@ namespace AvaloniaTodoListApp.Services
                     _data!.Rows.Add(_data.Rows.Count, item.Description, item.IsChecked, item.Date);       
             }
 
-            return itemList!;
+            return itemList;
         }
 
         // 向data里面写入新增的Todo Item
         public static void AddItem(string Description)
         {
-            TodoItem item = new TodoItem { Description = Description, IsChecked = false };
+            var item = new TodoItem { Description = Description, IsChecked = false };
             _data!.Rows.Add(_data.Rows.Count, item.Description, item.IsChecked, item.Date);
         }
 
@@ -99,6 +113,7 @@ namespace AvaloniaTodoListApp.Services
                 if (description == Description)
                 {
                     row["IsChecked"] = state;
+                    return;
                 }
             }
         }

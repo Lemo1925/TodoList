@@ -7,32 +7,33 @@
              x:Class="AvaloniaTodoListApp.Views.TodoListView"
 			 xmlns:vm="using:AvaloniaTodoListApp.ViewModels"
 			 x:DataType="vm:TodoListViewModel">
-	<DockPanel>
-		<Button DockPanel.Dock="Bottom"
-				HorizontalAlignment="Stretch"
-				HorizontalContentAlignment="Center"
-				x:CompileBindings="False"
-				Command="{Binding $parent[Window].DataContext.AddItem}">
-			Add Item
-		</Button>
-		
-		<ItemsControl ItemsSource="{Binding Items}">
-			<ItemsControl.ItemTemplate>
-				<DataTemplate>
-					<Panel>
-						<CheckBox Margin="4"
-								  IsChecked="{Binding IsChecked}"
-								  Content="{Binding Description}">
-						</CheckBox>
-						<Button HorizontalAlignment="Right"
-								x:CompileBindings="False"
-								Command="{Binding $parent[Window].DataContext.EditItemCommand}"
-								CommandParameter="{Binding Description}">Edit</Button>
-					</Panel>
-				</DataTemplate>
-			</ItemsControl.ItemTemplate>
-		</ItemsControl>
-	</DockPanel>
-	        
-    
+	<Border CornerRadius="3" BorderThickness="1">
+		<DockPanel>
+			<Button DockPanel.Dock="Bottom"
+					HorizontalAlignment="Stretch"
+					HorizontalContentAlignment="Center"
+					x:CompileBindings="False"
+					Command="{Binding $parent[Window].DataContext.AddItem}">
+				Add Item
+			</Button>
+
+			<ItemsControl ItemsSource="{Binding Items}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<Panel Margin="5,0,5,0">
+							<CheckBox Margin="4"
+									  IsChecked="{Binding IsChecked}"
+									  Content="{Binding Description}">
+							</CheckBox>
+							<Button HorizontalAlignment="Right"
+									Padding="15,5,15,5"
+									x:CompileBindings="False"
+									Command="{Binding $parent[Window].DataContext.EditItemCommand}"
+									CommandParameter="{Binding Description}">Edit</Button>
+						</Panel>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</DockPanel>
+	</Border>
 </UserControl>

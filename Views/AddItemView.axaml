@@ -8,17 +8,19 @@
              x:Class="AvaloniaTodoListApp.Views.AddItemView"
 			 x:DataType="vm:AddItemViewModel"
 			 >
-	<DockPanel>
-		<Button DockPanel.Dock="Bottom"
-				HorizontalAlignment="Stretch"
-				HorizontalContentAlignment="Center"
-				Command="{Binding CancelCommand}">Cancel</Button>
-		<Button DockPanel.Dock="Bottom"
-				HorizontalAlignment="Stretch"
-				HorizontalContentAlignment="Center"
-				Command="{Binding OkCommand}">OK</Button>
-		<TextBox AcceptsReturn="True"
-				 Text="{Binding Description}"
-				 Watermark="Enter your do item"/>
-	</DockPanel>
+	<Border CornerRadius="3" BorderThickness="1">
+		<DockPanel>
+			<Button DockPanel.Dock="Bottom"
+					HorizontalAlignment="Stretch"
+					HorizontalContentAlignment="Center"
+					Command="{Binding CancelCommand}">Cancel</Button>
+			<Button DockPanel.Dock="Bottom"
+					HorizontalAlignment="Stretch"
+					HorizontalContentAlignment="Center"
+					Command="{Binding OkCommand}">OK</Button>
+			<TextBox AcceptsReturn="True"
+					 Text="{Binding Description}"
+					 Watermark="Enter your do item"/>
+		</DockPanel>
+	</Border>
 </UserControl>

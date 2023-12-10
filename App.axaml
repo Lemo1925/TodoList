@@ -3,7 +3,8 @@
              x:Class="AvaloniaTodoListApp.App"
              xmlns:local="using:AvaloniaTodoListApp"
              RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+             <!-- "Default" ThemeVariant follows system theme variant. 
+			 "Dark" or "Light" are other available options. -->
 
     <Application.DataTemplates>
         <local:ViewLocator/>
